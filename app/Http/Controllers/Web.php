@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str as Str;
+
+use DB;
 
 class Web extends Controller
 {
@@ -130,11 +130,6 @@ class Web extends Controller
             ->where('IdReceptor', '=', session()->get('userAct.idperfil'))
             ->get();
 
-        return view('components.alumnos.vermateria', compact('notificaciones','materia', 'idmateria'));
+        return view('components.alumnos.vermateria', compact('notificaciones', 'materia', 'idmateria'));
     }
-    
-    }
-    
-    
-
-
+}
