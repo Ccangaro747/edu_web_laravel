@@ -104,7 +104,6 @@ class Web extends Controller
                     ->get()
                     ->first();
                 return view('components.directivos.index', compact('notificaciones', 'escuela'));
-
         }
     }
 
