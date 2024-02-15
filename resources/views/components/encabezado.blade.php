@@ -26,6 +26,13 @@ $nombre = Str::slug(session()->get('userAct.nombre'));
             <p style="color: white;">Inicio</p>
           </a>
         </li>
+        @if(session('userAct.perfil') != 4)
+        <li class="nav-item active">
+          <a class="nav-link px-2" href="{{url('mensajesemitidos',['nombre'=>$nombre,'idperfil'=>session('userAct.idperfil')])}}">
+            <p style="color: white;">Emitidos</p>
+          </a>
+        </li>
+        @endif
         <li class="nav-item">
           <a class="nav-link px-2" href="{{url('cerrar')}}">
             <p style="color: white;">Salir</p>

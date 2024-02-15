@@ -21,6 +21,8 @@
 
     @yield('encabezado')
 
+    @yield('chat')
+
     @yield('notificaciones')
 
     @yield('contenido')

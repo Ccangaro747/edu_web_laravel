@@ -1,6 +1,5 @@
 @extends('app')
 
-<<<<<<< HEAD
 @include('components.encabezado')
 
 @section('contenido')
@@ -68,27 +67,9 @@
                         <a href="{{url('notificaciones_todas')}}" class="btn btn-primary">Volver</a>
                         <button class="btn btn-primary" type="submit">Enviar Respuesta</button>
                     </div>
-=======
-@include('components/encabezado')
-
-@section('contenido')
-<div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <h2 class="titulos">Responder a Notificación</h2>
-            <form>
-                <div class="mb-3 px-4">
-                    <h5 class="titulos">Asunto: {{ $not->Motivo }}</h5>
-                    <textarea class="form-control" id="mensaje" name="mensaje" rows="5" style="width: 100%; max-width: 100%;" required></textarea>
-                    <button type="submit" class="btn btn-primary mt-2">Enviar</button>
->>>>>>> 9a0bbc6b4bbeb2aa9b3850babca916cd629e7bbe
                 </div>
             </form>
         </div>
     </div>
 </div>
-<<<<<<< HEAD
 @endsection
-=======
-@endsection
->>>>>>> 9a0bbc6b4bbeb2aa9b3850babca916cd629e7bbe

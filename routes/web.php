@@ -38,6 +38,9 @@ Route::group(['middleware' => 'UserLog'], function () {
     Route::get('responder/{id}', 'Web@respondermensaje');
     Route::get('inicio/{nombre}/{idperfil}', 'Web@index');
     Route::get('cerrar', 'Web@cerrarSesion');
+    Route::get('mensajesemitidos/{nombre}/{idperfil}', 'Web@mensajesemitidos');
+    Route::get('vermensajeemitido/{id}', 'Web@vermensajeemitido');
+    Route::get('verchat/{IdPerfil}', 'Web@verchat');
 
      //Vistas alumnos    
     Route::get('materia/{materia}/{idmateria}', 'Web@mostrarMateria');
@@ -61,4 +64,5 @@ Route::group(['middleware' => 'UserLog'], function () {
 
 /* Rutas para validar datos del lado del servidor */
 Route::post('guardar_respuesta', 'Web@guardarRespuesta');
+
 

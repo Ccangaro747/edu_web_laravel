@@ -298,4 +298,155 @@ class Web extends Controller
 
         return redirect('notificaciones_todas');
     }
+
+
+
+    public function mensajesemitidos($nombre, $idperfil)
+    {
+        $notificaciones = DB::table('v_notificaciones')
+            ->where('IdEmisor', $idperfil)
+            ->get();
+
+        return view('components.mensajesemitidos', compact('notificaciones'));
+    }
+
+
+    public function vermensajeemitido(Request $request, $id)
+    {
+        $not = DB::table('v_notificaciones')
+            ->select('*')
+            ->where('Id', '=', $id)
+            ->get()->first();
+        $notrta = DB::table('v_notificaciones')
+            ->select('*')
+            ->where('Id', '=', $not->IdRespuesta)
+            ->get()->first();
+
+        $texto = '    
+        <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h4 class="modal-title titulos"><small>Notificación #' . $not->Id . '.</small> ' . $not->Motivo . '</h4>
+        </div>
+        <div class="modal-body">
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item w-50"><p>Curso:</p></li>
+              <li class="list-group-item w-100"><p><b>' . $not->curso . '</b></p></li>
+            </ul>
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item w-50"><p>Materia:</p></li>
+              <li class="list-group-item w-100"><p><b>' . $not->Materia . '</b></p></li>
+            </ul> 
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item w-50"><p>Destinatario:</p></li>
+              <li class="list-group-item w-100"><p><b>' . $not->nombre_receptor . '</b></p></li>
+            </ul>
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item w-50"><p><i class="fas fa-calendar" aria-hidden="true"></i></p></li>
+              <li class="list-group-item w-100"><p><b>' . $not->Fecha . '</b></li>
+            </ul> 
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item w-50"><i class="fa fa-clock-o" aria-hidden="true"></i></p></li>
+              <li class="list-group-item w-100"><p><b>' . $not->Hora . '</b></p></li>
+            </ul>
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item w-50"><p>Tipo de Mensaje:</p></li>
+              <li class="list-group-item w-100"><p><b>' . $not->nombretipo . '</b></p></li>
+            </ul>
+            <p class="titulos">Texto completo del mensaje:</p>
+            <textarea rows="5" class="form-control" readonly style="font-size: 12px;">' . $not->Texto . '</textarea>';
+        if (!is_null($not->Link)) {
+            $texto .=
+                '<ul class="list-group list-group-horizontal">
+                <li class="list-group-item w-50"><p><b>Este mensaje tiene un enlace:</b></li>
+                <li class="list-group-item w-100"> <a href="' . url($not->Link) . '" target="_blank" role="button" class="btn btn-info btn-sm">Ir al link</a></p></li>
+            </ul>';
+        }
+        if (!is_null($not->Adjunto)) {
+            $texto .=
+                '<ul class="list-group list-group-horizontal">
+                <li class="list-group-item w-50"><p><b>Este mensaje tiene un documento adjunto:</b></li>
+              <li class="list-group-item w-100"> <a href="' . url($not->Adjunto) . '" target="_blank" role="button" class="btn btn-success btn-sm">Descargar</a></p></li>
+            </ul>';
+        }
+
+        $texto .= '<hr>
+            <p class="titulos">Respuesta del mensaje:</p>
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item w-50"><p><i class="fas fa-calendar" aria-hidden="true"></i></p></li>
+              <li class="list-group-item w-100"><p><b>' . $notrta->Fecha . '</b></li>
+            </ul> 
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item w-50"><i class="fa fa-clock-o" aria-hidden="true"></i></p></li>
+              <li class="list-group-item w-100"><p><b>' . $notrta->Hora . '</b></p></li>
+            </ul>
+            
+            <textarea rows="5" class="form-control" readonly style="font-size: 12px;">' . $notrta->Texto . '</textarea>';
+
+        $texto .=    '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>';
+
+
+        return $texto;
+    }
+
+    public function verchat(Request $request, $id)
+    {
+        $not = DB::table('v_notificaciones')
+            ->select('*')
+            ->where('Id', '=', $id)
+            ->get()->first();
+        $notrta = DB::table('v_notificaciones')
+            ->select('*')
+            ->where('Id', '=', $not->IdRespuesta)
+            ->get()->first();
+
+            $chat = '
+    <div class="card-header bg-transparent">
+        <div class="navbar navbar-expand p-0">
+            <div class="d-flex justify-content-center w-100">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item">
+                        <a href="#!" class="nav-link">
+                            <div class="position-relative" style="width:50px; height: 50px; border-radius: 50%; border: 2px solid #e84118; padding: 2px">
+                                <img src="#" class="img-fluid rounded-circle" alt="">
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <li class="list-group-item w-100"><p><b>' . $not->nombre_emisor . '</b></p></li>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="#!" class="nav-link">
+                            
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-2" style="max-height: 300px; overflow: auto;">
+    <div class="d-flex align-items-baseline mb-4 justify-content-center">
+        <div class="">
+            <img src="#" class="img-fluid rounded-circle" alt="">
+        </div>
+        <div class="pe-2">
+            <div>
+                <div class="card card-text d-inline-block p-2 px-3 m-1">' . $not->Texto .'
+                </div>
+            </div>
+            <div class="text-center"> 
+                <li class="list-group-item w-100"><p><b>' . $not->Fecha . '</b></p></li>
+            </div>
+            <div class="text-center"> 
+                <li class="list-group-item w-100"><p><b>' . $not->Hora . '</b></p></li>
+            </div>
+        </div>
+    </div>
+</div>
+
+';
+        return $chat;
+    }
 }

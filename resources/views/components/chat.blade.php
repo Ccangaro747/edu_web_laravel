@@ -1,4 +1,8 @@
+@extends('app')
+
 @section('chat')
+
+
 
 <div class="container mt-4">
     <div class="card mx-auto" style="max-width:400px">
@@ -14,7 +18,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#!" class="nav-link">Profesor</a>
+                        <a href="#!" class="nav-link"></a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
@@ -39,7 +43,7 @@
                         </div>
                     </div>
                     <div>
-                        <div class="small">01:10PM</div>
+                        <div class="small"></div>
                     </div>
                 </div>
             </div>
