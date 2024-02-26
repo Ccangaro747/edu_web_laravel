@@ -11,15 +11,15 @@
         </div>
         <form action="{{ url('control') }}" method="POST">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <div class="form-group mb-3">
-                <label for="email">Correo electrónico</label>
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo electrónico</label>
                 <input type="email" id="user" name="usuario" class="form-control" placeholder="Ingresá tu correo electrónico" />
             </div>
-            <div class="form-group mb-3">
-                <label for="password">Contraseña</label>
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
                 <input type="password" class="form-control" id="password" name="clave" placeholder="Contraseña" required>
             </div>
-            <div class="form-group form-check mb-3">
+            <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="showPassword">
                 <label class="form-check-label" for="showPassword">Mostrar contraseña</label>
             </div>

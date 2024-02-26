@@ -25,6 +25,12 @@
 
     @yield('notificaciones')
 
+    @yield('biblioteca')
+
+    @yield('tareas')
+
+    @yield('calificaciones')
+
     @yield('contenido')
 
     @yield('login')

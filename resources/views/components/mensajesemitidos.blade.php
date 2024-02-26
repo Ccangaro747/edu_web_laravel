@@ -11,7 +11,7 @@
         @if (count($notificaciones) > 0)
         <div class="container-fluid">
             @foreach ($notificaciones as $not)
-            <div data-bs-toggle="" onclick="ver({{ $not->Id }});" data-bs-target="#ver">
+            <div data-bs-toggle="modal" onclick="ver({{ $not->Id }});" data-bs-target="#ver">
                 <div class="mensaje">
                     <div class="tipomensaje" align="center">
                         <i class="fas {{ $not->iconotipo }} fa-2x" aria-hidden="true" style="color: #{{ $not->colortipo }};"></i>
@@ -61,7 +61,7 @@
         <div class="modal fade ps-child" id="ver" tabindex="-1" role="dialog" aria-labelledby="ver" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div id="vermensaje"></div>
+                    <div id="vermensaje" class="p-3 d-flex flex-column gap-3"></div>
                 </div>
             </div>
         </div>
@@ -85,4 +85,22 @@
         $("#chat").load("{{ url('verchat') }}/" + id);
     }
 </script>
+
+<!-- Utilicé AJAX -->
+<script type="text/javascript">
+    function ver(id) {
+        $.ajax({
+            url: "{{ url('verchat') }}/" + id,
+            type: "GET",
+            success: function(response) {
+                $("#vermensaje").html(response);
+                $("#ver").modal("show");
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
+</script>
+
 @endsection

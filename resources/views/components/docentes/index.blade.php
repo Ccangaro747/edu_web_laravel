@@ -6,6 +6,8 @@
 
 @include('components/notificaciones')
 
+@include('components/biblioteca')
+
 @section('contenido')
 <!-- Sección de Contenido Principal -->
 <div class="container-fluid">

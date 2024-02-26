@@ -6,6 +6,8 @@
 
 @include('components/notificaciones')
 
+
+
 @section('contenido')
 <!-- Sección de Contenido Principal -->
 <div class="container-fluid">
@@ -15,6 +17,7 @@
         </div>
     </div>    
 </div>    
+
 @if (count($notificaciones) > 0)
 <div class="container-fluid">
     <div class="row py-2 d-flex align-items-stretch">
@@ -34,7 +37,15 @@
     </div>
 @else
     <p>No existen notificaciones para su perfil.</p>
-@endif    
+@endif
+
+<!--biblioteca -->
+@include('components/biblioteca')
+
+@include('components/tareas')
+
+@include('components/calificaciones')
+
+
 </div>    
 @endsection
-

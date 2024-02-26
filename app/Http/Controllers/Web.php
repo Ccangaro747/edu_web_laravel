@@ -400,20 +400,20 @@ class Web extends Controller
             ->where('Id', '=', $not->IdRespuesta)
             ->get()->first();
 
-            $chat = '
-    <div class="card-header bg-transparent">
+        $chat = '
+    <div class="card-header bg-transparent d-flex align-items-start">
         <div class="navbar navbar-expand p-0">
             <div class="d-flex justify-content-center w-100">
                 <ul class="navbar-nav align-items-center">
-                    <li class="nav-item">
-                        <a href="#!" class="nav-link">
-                            <div class="position-relative" style="width:50px; height: 50px; border-radius: 50%; border: 2px solid #e84118; padding: 2px">
+                    <li class="nav-item me-2">
+                        <a href="#!">
+                            <div class="position-relative" style="width:40px; height: 40px; border-radius: 50%; border: 2px solid #e84118; padding: 2px">
                                 <img src="#" class="img-fluid rounded-circle" alt="">
                             </div>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <li class="list-group-item w-100"><p><b>' . $not->nombre_emisor . '</b></p></li>
+                        <b>' . $not->nombre_emisor . '</b>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
@@ -426,21 +426,19 @@ class Web extends Controller
             </div>
         </div>
     </div>
-    <div class="card-body p-2" style="max-height: 300px; overflow: auto;">
-    <div class="d-flex align-items-baseline mb-4 justify-content-center">
-        <div class="">
-            <img src="#" class="img-fluid rounded-circle" alt="">
-        </div>
-        <div class="pe-2">
-            <div>
-                <div class="card card-text d-inline-block p-2 px-3 m-1">' . $not->Texto .'
+
+    <div class="card-body d-flex flex-column align-items-start" style="max-height: 300px; overflow: auto;">
+        <div class="card card-text d-inline-block p-2 px-3 m-1">' . $not->Motivo . '</div>            
+            <div class="d-flex flex-column w-100 align-items-end">
+                <div class="card card-text d-inline-block p-2 px-3 m-1">' . $not->Texto . '</div>
+                <div class="d-flex justify-content-center gap-2 px-2">
+                    <div class="text-center"> 
+                        <p class="list-group-item w-100">' . $not->Fecha . '</p>
+                    </div>
+                    <div class="text-center"> 
+                        <p class="list-group-item w-100">' . $not->Hora . '</p>
+                    </div>
                 </div>
-            </div>
-            <div class="text-center"> 
-                <li class="list-group-item w-100"><p><b>' . $not->Fecha . '</b></p></li>
-            </div>
-            <div class="text-center"> 
-                <li class="list-group-item w-100"><p><b>' . $not->Hora . '</b></p></li>
             </div>
         </div>
     </div>
